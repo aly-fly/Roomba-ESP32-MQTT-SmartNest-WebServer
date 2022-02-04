@@ -18,4 +18,6 @@ Currently (revision 0.4) the code is not very clean. Sorry about that. But hey, 
 Project is still in development. 
 Next step is to produce a custom PCB to be fitted inside Roomba 782e. Then follows mechanical integration and long term real-life testing of the code.
 
+Here I have to say big thanks to Andres Sosa from SmartNest.cz ([Follow on IG](https://www.instagram.com/smartnestcz/)) for fast support and adding a new device.
+
 ![SmartNest control](/test-images/SN_charging_crop.png?raw=true "SmartNest control")
