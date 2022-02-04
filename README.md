@@ -14,5 +14,8 @@ Features:
 - Raw TCP socket can be enabled for wireless Debug messages instead of classic wired Serial port
 Configuration: open file "global_defines.h"
 
+Currently (revision 0.4) the code is not very clean. Sorry about that. But hey, it works fine and is without serios bugs :) 
+Project is still in development. 
+Next step is to produce a custom PCB to be fitted inside Roomba 782e. Then follows mechanical integration and long term real-life testing of the code.
 
 ![SmartNest control](/test-images/SN_charging_crop.png?raw=true "SmartNest control")
