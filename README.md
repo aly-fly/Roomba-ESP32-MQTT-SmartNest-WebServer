@@ -3,6 +3,7 @@
 Author: Aljaz Ogrin  
 Project: Roomba 600, 700, 800 series remote controller  
 Hardware: ESP32  
+Compiler: Arduino IDE + ESP32 (and other) libraries
 Project description: Remote control for Roomba Create 2 and compatible vacuum-cleaners.   
 Features:  
 - Acts as AccesPoint on first boot-up or if Wifi is not available; to enter SSID and Password of your network
