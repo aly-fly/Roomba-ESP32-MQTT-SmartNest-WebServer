@@ -1,4 +1,4 @@
-# Roomba-ESP32-MQTT-SmartNest-WebServer
+# Roomba -> ESP32 -> MQTT SmartNest + WebServer
 
 Author: Aljaz Ogrin
 Project: Roomba 600, 700, 800 series remote controller
