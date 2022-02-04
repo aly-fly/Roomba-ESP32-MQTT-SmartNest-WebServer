@@ -13,3 +13,6 @@ Features:
 - Hostname and mDns name is available (shows up on a network map software or router)
 - Raw TCP socket can be enabled for wireless Debug messages instead of classic wired Serial port
 Configuration: open file "global_defines.h"
+
+
+![SmartNest control](/test-images/SN_charging_crop.png?raw=true "SmartNest control")
