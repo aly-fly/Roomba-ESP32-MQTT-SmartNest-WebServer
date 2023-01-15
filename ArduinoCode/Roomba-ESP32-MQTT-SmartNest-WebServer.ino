@@ -97,9 +97,11 @@ void setup() {
 
 void MainLoop()
 {
-  LoopMqtt();
-  checkMqtt();
-  MqttPeriodicReportBack();
+  if (WiFi.status() == WL_CONNECTED) {
+    LoopMqtt();
+    checkMqtt();
+    MqttPeriodicReportBack();
+  }
   LoopWebServer();
   UpdateLED();
   delay(2);//allow the cpu to switch to other tasks
@@ -108,7 +110,7 @@ void MainLoop()
 void loop() {
     // reconnect if needed
     if (WiFi.status() != WL_CONNECTED) {
-        LedOn();
+        LedRed();
         Serial.println("WiFi connection lost. Reconnecting...");
          // delete old config
         WiFi.disconnect(true);
@@ -134,14 +136,14 @@ bool startWifi() {
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
-    LEDtoggle();
+    LEDgreenToggle();
     if ((millis() - StartTime) > (WIFI_CONNECT_TIMEOUT_SEC * 1000)) {
       Serial.println("\r\nWiFi connection timeout!");
       return false; // exit with False
     }
   }
 
-  Serial.println('\r\n');
+  Serial.println("\r\n");
   Serial.print("Connected to ");
   Serial.println(WiFi.SSID());
   Serial.print("IP address: ");
@@ -157,6 +159,8 @@ void WiFiStationDisconnected(WiFiEvent_t event, WiFiEventInfo_t info){
   Serial.println("Disconnected from WiFi.");
   Serial.print("WiFi lost connection. Reason: ");
   Serial.println(info.disconnected.reason);
+
+// reconnect is handled in the main loop  
 //  Serial.println("Trying to Reconnect");
-//  WiFi.begin(ssid, password);
+//  WiFi.begin(WiFi_SSID.c_str(), WiFi_PASS.c_str());
 }

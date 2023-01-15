@@ -1,0 +1,24 @@
+Battery level: 100 %
+Status 0: 3 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 67 103 255 201 32 10 136 10 136
+Wheels: 0X3
+Overcurrent: 0
+DirtDetect: 0
+Distance: 0 mm
+Angle: 0 deg
+ChargingState: 3 Trickle Charging
+Voltage: 17255 mV
+Current: -55 mA
+Temperature: 32 C
+BatteryCharge: 2696 mAh
+BatteryCapacity: 2696 mAh
+Status 101: 143 211 67 123 48 0 10 0 55 0 25 0 16 0 126 3 104 0 0 0 0 0 0 0 0 0 0 0
+EncoderLeft: 36819
+EncoderRight: 17275
+MotCurrLeft: 0
+MotCurrRight: 0
+MotCurrMainBrush: 0
+MotCurrSideBrush: 0
+IncrementLeft: 0
+IncrementRight: 0
+Total distance: 0
+RoombaLastCommand: 999

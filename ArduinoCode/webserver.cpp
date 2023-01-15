@@ -73,7 +73,7 @@ void WebHandleNotFound() {
     message += " " + Wserver.argName(i) + ": " + Wserver.arg(i) + "\n";
   }
   Wserver.send(404, "text/plain", message);
-  LedOn();
+  LedRed();
 }
 
 void WebHandleRoot() {
@@ -84,7 +84,7 @@ void WebHandleRoot() {
 }
 
 void WebPageStart() {
-  LedOn();
+  LedGreen();
   // print the received signal strength
   long rssi = WiFi.RSSI();
   char srssi[5];

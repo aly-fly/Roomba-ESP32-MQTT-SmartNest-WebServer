@@ -13,22 +13,42 @@
 double lastTimeLedChanged = 0;
 
 void LedInit() {
-    pinMode(LEDpin, OUTPUT);
-    LedOn();
+    pinMode(LEDpinA, OUTPUT);
+    pinMode(LEDpinB, OUTPUT);
+    LedRed();
 }
 
-void LedOn() {
-    digitalWrite(LEDpin, HIGH);
+void LedGreen() {
+    digitalWrite(LEDpinA, HIGH);
+    digitalWrite(LEDpinB, LOW);
     lastTimeLedChanged = millis();
 }
 
-void LEDtoggle() {
-  digitalWrite(LEDpin, !digitalRead(LEDpin));
+void LedRed() {
+    digitalWrite(LEDpinA, LOW);
+    digitalWrite(LEDpinB, HIGH);
+    lastTimeLedChanged = millis();
+}
+
+void LedOff() {
+    digitalWrite(LEDpinA, LOW);
+    digitalWrite(LEDpinB, LOW);
+}
+
+void LEDgreenToggle() {
+    digitalWrite(LEDpinA, !digitalRead(LEDpinA));
+    digitalWrite(LEDpinB, LOW);
+}
+
+void LEDredToggle() {
+    digitalWrite(LEDpinA, LOW);
+    digitalWrite(LEDpinB, !digitalRead(LEDpinB));
 }
 
 void UpdateLED() {
-  if (millis() - lastTimeLedChanged > STATUS_LED_MSEC) {
-    digitalWrite(LEDpin, LOW);
+  if (millis() - lastTimeLedChanged > STATUS_LED_MSEC) {  // turn off LED after a few miliseconds
+    digitalWrite(LEDpinA, LOW);
+    digitalWrite(LEDpinB, LOW);
     lastTimeLedChanged = millis();
     }
 }

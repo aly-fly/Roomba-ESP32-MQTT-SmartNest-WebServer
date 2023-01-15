@@ -284,13 +284,13 @@ void RoombaGetStatus() {
     if ((MotCurrMainBrush != 0)                             ) {MqttStatus = 2; RoombaStatus = "Moving without remote command!"; } else
                                                               {MqttStatus = 6; RoombaStatus = "Undefined state !!!"; }
   
-    sprintf(s1, "-- old stat 2: %d\r\n", MqttStatusOld2); 
+    sprintf(s1, "-- old status 2: %d\r\n", MqttStatusOld2); 
     RoombaDetails += s1;  RoombaDetails += "<br>";
     Serial.print(s1);
-    sprintf(s1, "-- old stat 1: %d\r\n", MqttStatusOld1); 
+    sprintf(s1, "-- old status 1: %d\r\n", MqttStatusOld1); 
     RoombaDetails += s1;  RoombaDetails += "<br>";
     Serial.print(s1);
-    sprintf(s1, "-- last stat: %d\r\n", MqttStatus); 
+    sprintf(s1, "-- last status: %d\r\n", MqttStatus); 
     RoombaDetails += s1;  RoombaDetails += "<br>";
     Serial.print(s1);
     

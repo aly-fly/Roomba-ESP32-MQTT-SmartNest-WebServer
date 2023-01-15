@@ -11,7 +11,7 @@
 /* U0UXD is used to communicate with the ESP32 for programming and during reset/boot.
  * U2UXD is unused and can be used for your projects.  */
 
-#define WAKEUPpin 4 // GPIO  4, pin 26
+#define WAKEUPpin 19 // GPIO  19, pin 31
 #define RXD2pin 16  // GPIO 16, pin 27
 #define TXD2pin 17  // GPIO 17, pin 28
 

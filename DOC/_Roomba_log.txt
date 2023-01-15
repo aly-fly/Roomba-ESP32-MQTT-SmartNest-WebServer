@@ -1,0 +1,34 @@
+Startup:
+key-wakeup
+slept for 1 min 4 sec
+
+2015-12-07-1444-L   
+r3-orion/tags/release-3.4.2:1914 CLEAN
+
+bootloader id: 4714 5443 85E4 CFFF 
+assembly: 3.8
+revision: 2
+series: 700-series
+flash version: 10
+flash info crc passed: 1
+
+battery-current-zero 254
+
+
+Recovery charge:
+Status 0: 3 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 60 170 1 10 28 0 24 10 136 
+
+Status 0: 3 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 2 62 214 4 124 27 0 16 10 136 
+Wheels: 0X3 
+Overcurrent:  0 
+DirtDetect: 0 
+Distance: 0 mm
+Angle: 0 deg
+ChargingState: 2 Full Charging
+Voltage: 16086 mV
+Current: 1148 mA
+Temperature: 27 C 
+BatteryCharge: 16 mAh 
+BatteryCapacity: 2696 mAh 
+Batt level: 0 
+

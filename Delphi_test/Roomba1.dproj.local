@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.318,D:\OGRIN\RLSHUB_SWD\RLS_LIB\Serial_driver.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.866,D:\OGRIN\Dropbox\IoT_HomeAutomation\Roomba\Delphi_test\Roomba1.dproj=C:\Users\ogrin\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.144,=D:\OGRIN\RLSHUB_SWD\RLS_LIB\Orodja.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.680,=D:\OGRIN\RLSHUB_SWD\RLS_LIB\Serial_driver.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.112,=C:\Users\ogrin\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.000,D:\OGRIN\Dropbox\IoT_HomeAutomation\Roomba\Delphi_test\Roomba1_main.pas=C:\Users\ogrin\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.653,=D:\OGRIN\RLSHUB_SWD\RLS_LIB\Serial_comm.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.000,D:\OGRIN\Dropbox\IoT_HomeAutomation\Roomba\Delphi_test\Roomba1_main.dfm=C:\Users\ogrin\Documents\RAD Studio\Projects\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

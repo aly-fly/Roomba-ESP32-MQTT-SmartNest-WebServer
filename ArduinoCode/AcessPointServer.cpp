@@ -90,7 +90,7 @@ void GetListOfAvailableNetworks() {
   // REF: \packages\esp32\hardware\esp32\1.0.6\libraries\WiFi\examples\WiFiScan\WiFiScan.ino
   Serial.print("Getting list of available networks...");
   ListOfNetworks = "Available networks:<br>\r\n";
-    LedOn();
+    LedGreen();
     // WiFi.scanNetworks will return the number of networks found
     int n = WiFi.scanNetworks();
     Serial.println("...scan done.");
@@ -134,12 +134,14 @@ void StartAPmodeGetCredentials(){
   delay(100); // Serial.println("Wait 100 ms for AP_START...");
 
   // Set static IP
+  /*
   IPAddress AP_LOCAL_IP(ACCESS_POINT_IP);
   IPAddress AP_NETWORK_MASK(255, 255, 255, 0);
   if (!WiFi.softAPConfig(AP_LOCAL_IP, AP_LOCAL_IP, AP_NETWORK_MASK)) {
     Serial.println("AP Config Failed");
   }  
-  
+  */
+  delay (1500);
   IPAddress IP2 = WiFi.softAPIP();
   
   Serial.print("AP IP address: ");
@@ -156,7 +158,7 @@ void StartAPmodeGetCredentials(){
   while(!WiFiCredsWrittenOK){
     server.handleClient();
     delay(100);
-    LEDtoggle();
+    LEDredToggle();
   }
   Serial.println("Stopping web server and AP...");
   server.stop();

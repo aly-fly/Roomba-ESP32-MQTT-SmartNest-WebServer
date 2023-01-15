@@ -41,48 +41,62 @@ void sendToBroker(char* topic, char* message) {
     char topicArr[100];
     sprintf(topicArr, "%s/%s", MQTT_CLIENT, topic);
     MQTTclient.publish(topicArr, message);
-    LedOn();
+    LedGreen();
   }
 }
 
 void startMqtt() {
+  if (WiFi.status() == WL_CONNECTED) {
     MQTTclient.setServer(MQTT_BROKER, MQTT_PORT);
     MQTTclient.setCallback(callback);
 
-    while (!MQTTclient.connected()) {
-        Serial.println("Connecting to MQTT...");
+    Serial.print("Connecting to MQTT... ");
+    SendToSocket("Connecting to MQTT... ");
         if (MQTTclient.connect(MQTT_CLIENT, MQTT_USERNAME, MQTT_PASSWORD)) {
-            Serial.println("connected");
+            Serial.println("connected.");
+            SendToSocket("connected.\r\n");
+
+            char subscibeTopic[100];
+            sprintf(subscibeTopic, "%s/#", MQTT_CLIENT);
+            MQTTclient.subscribe(subscibeTopic);  //Subscribes to all messages send to the device
+        
+            sendToBroker("report/online", "true");  // Reports that the device is online
+            delay(100);
+            sendToBroker("report/firmware", FIRMWARE_VERSION);  // Reports the firmware version
+            delay(100);
+            sendToBroker("report/ip", (char*)WiFi.localIP().toString().c_str());  // Reports the ip
+            delay(100);
+            sendToBroker("report/network", (char*)WiFi.SSID().c_str());  // Reports the network name
+            delay(100);
+            MqttReportWiFiSignal();
+            delay(100);
+            MqttReportDistanceUnits();
+            delay(100);
+            
         } else {
+            Serial.println("");
             if (MQTTclient.state() == 5) {
+                LedRed();
                 Serial.println("Connection not allowed by broker, possible reasons:");
                 Serial.println("- Device is already online. Wait some seconds until it appears offline");
                 Serial.println("- Wrong Username or password. Check credentials");
                 Serial.println("- Client Id does not belong to this username, verify ClientId");
+                SendToSocket("MQTT connect error 5 - Connection not allowed!\r\n");
             } else {
+                LedRed();
                 Serial.print("Not possible to connect to Broker Error code:");
                 Serial.println(MQTTclient.state());
+                SendToSocket("MQTT connect error: ");
+                char message[5];
+                sprintf(message, "%d", MQTTclient.state());
+                SendToSocket(message);
+                SendToSocket("\r\n");
             }
-            delay(0x7530);
-        }
-    }
-
-    char subscibeTopic[100];
-    sprintf(subscibeTopic, "%s/#", MQTT_CLIENT);
-    MQTTclient.subscribe(subscibeTopic);  //Subscribes to all messages send to the device
-
-    sendToBroker("report/online", "true");  // Reports that the device is online
-    delay(100);
-    sendToBroker("report/firmware", FIRMWARE_VERSION);  // Reports the firmware version
-    delay(100);
-    sendToBroker("report/ip", (char*)WiFi.localIP().toString().c_str());  // Reports the ip
-    delay(100);
-    sendToBroker("report/network", (char*)WiFi.SSID().c_str());  // Reports the network name
-    delay(100);
-    MqttReportWiFiSignal();
-    delay(100);
-    MqttReportDistanceUnits();
-    delay(100);
+            delay(0x2000);
+            LedOff();
+            delay(0x1000);
+    }  // not allowed to connect to broker
+  }  // wifi connected
 }
 
 int splitTopic(char* topic, char* tokens[], int tokensNumber) {
@@ -116,13 +130,13 @@ void callback(char* topic, byte* payload, unsigned int length) {  //A new messag
     Serial.print("\t     Message: ");
     Serial.println(message);
 
-SendToSocket("MQTT: ");
-SendToSocket(tokens[1]);
-SendToSocket("/");
-SendToSocket(tokens[2]);
-SendToSocket("/");
-SendToSocket(message);
-SendToSocket("\r\n");
+    SendToSocket("MQTT: ");
+    SendToSocket(tokens[1]);
+    SendToSocket("/");
+    SendToSocket(tokens[2]);
+    SendToSocket("/");
+    SendToSocket(message);
+    SendToSocket("\r\n");
 
     //------------------Decide what to do depending on the topic and message---------------------------------
 
@@ -142,7 +156,7 @@ SendToSocket("\r\n");
             MqttProcessCommand();
           }
       }
-    LedOn();
+    LedRed();
 }
 
 
@@ -153,9 +167,9 @@ void LoopMqtt(){
 void MqttProcessCommand() {
     Serial.printf("MQTT command received: %d", MqttCommand);
     Serial.println(" ");
-SendToSocket("MQTT CMD: ");
-SendToSocket(String(MqttCommand));
-SendToSocket("\r\n");
+    SendToSocket("MQTT CMD: ");
+    SendToSocket(String(MqttCommand));
+    SendToSocket("\r\n");
 
 // status:  0:off,1:idle,2:cleaning,3:returning,4:charging, 5:charged, 6:error
     if (MqttCommand == 0) { RoombaStop(); } else
@@ -176,9 +190,14 @@ void MqttReportBattery() {
 } 
 
 void MqttReportStatus() {
-  char message2[5];
+  char message2[15];
   sprintf(message2, "%d", MqttStatus);
   sendToBroker("report/status", message2);
+  delay(100);
+  // string to char array
+  char msg3[RoombaStatus.length() + 1]; 
+  strcpy(msg3, RoombaStatus.c_str());    
+  sendToBroker("report/firmware", msg3);  // firmware txt is replaced with roomba text status
 }    
 
 void MqttReportPowerState() {
